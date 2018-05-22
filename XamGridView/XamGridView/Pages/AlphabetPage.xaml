@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XamGridView"
+             xmlns:grid="clr-namespace:DLab.Views;assembly=DLab.GridView"
+             x:Class="XamGridView.Pages.AlphabetPage"
+             Title="Alphabet Grid">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Button x:Name="btnClear" Text="Clear"/>
+                <Button x:Name="btnRemove" Text="Remove Random"/>
+                <Button x:Name="btnAdd" Text="Add Data"/>
+            </StackLayout>
+            <grid:GridView x:Name="gridLayout" NumColumns="2" ScrollToEnd="True" Padding="5,5,5,5" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

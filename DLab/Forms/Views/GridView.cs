@@ -15,21 +15,30 @@ namespace DLab.Views
 {
     public class GridView : ScrollView
     {
+        // simple grid of the xamarin forms
         private static Grid mGrid = null;
+        // custom abstract class for the data transaction 
         private GridAdapter adapter = null;
+        // return the no of the Row
         private int rowCount = 0;
+        // return the total item
         private int itemCount = 0;
+        // return the position of the item
         private int position = 0;
+        // store the old view of the particular position 
         private Dictionary<int, View> viewDict = new Dictionary<int, View>();
+        // too get the Item Tap events
         public EventHandler<GridEventArgs> ItemTappedEvent = null; 
 
         public GridView()
         {
             mGrid = new Grid();
             Content = mGrid;
+            // if new item arives then handle automatic scrolling of the View
             mGrid.SizeChanged += Handle_SizeChanged;
         }
 
+        // For, the Column
         public static readonly BindableProperty NumColumnsProperty = BindableProperty.Create(
         "NumColumns",
         typeof(int),
@@ -46,6 +55,9 @@ namespace DLab.Views
             get { return (int)GetValue(NumColumnsProperty); }
         }
 
+        // if you want to allow ScrollToEnd then true else false
+        // if true - then it will be automatically scroll view when height of the view increases
+        // if false then not scrolling even any change occurs in height
         public static readonly BindableProperty ScrollToEndProperty = BindableProperty.Create(
         "ScrollToEnd",
         typeof(bool),
@@ -62,6 +74,7 @@ namespace DLab.Views
             get { return (bool)GetValue(ScrollToEndProperty); }
         }
 
+        // Specify Space between two column, default is 6
         public static readonly BindableProperty ColumnSpacingProperty = BindableProperty.Create(
         "ColumnSpacing",
         typeof(double),
@@ -79,6 +92,7 @@ namespace DLab.Views
             get { return (double)GetValue(ColumnSpacingProperty); }
         }
 
+        // Specify Space between two row, default is 6
         public static readonly BindableProperty RowSpacingProperty = BindableProperty.Create(
         "RowSpacing",
         typeof(double),
@@ -96,28 +110,34 @@ namespace DLab.Views
             get { return (double)GetValue(RowSpacingProperty); }
         }
 
+        // to get the row count
         public int NumRow
         {
             get { return rowCount; }
         }
 
+        // to get the item count
         public int ItemCount
         {
             get { return (itemCount + 1); }
         }
 
+        // to get and set ItemSource 
+        // Instance of the your custom adapter
         public GridAdapter ItemSource
         {
             set { setAdapter(value); }
             get { return adapter; }
         }
 
+        // to get and set Item Tap evant
         public EventHandler<GridEventArgs> ItemTapped
         {
             set { ItemTappedEvent = value; }
             get { return ItemTappedEvent; }
         }
 
+        // private method used by ItemSource
         private void setAdapter(GridAdapter adapter)
         {
             if (adapter == null)
@@ -131,9 +151,14 @@ namespace DLab.Views
             }
 
             this.adapter = adapter;
+            // Attach NotifyDataSetChange event
             adapter.AttachToEvent(Handle_notifyDataSetChange);
+            // Attach NotifyDataSetChangeByIndex event
             adapter.AttachToEvent(Handle_notifyDataSetChangeByIndex);
+            // set column and row definations 
+            // also change in the definations
             setDefinations();
+            // load view at initial state
             loadCells();
         }
 
@@ -141,13 +166,19 @@ namespace DLab.Views
         {
             if(mGrid != null)
             {
+                // clear whole grid
                 ClearGrid();
+                // set column and row definations 
+                // also change in the definations
                 setDefinations();
                 for (position = 0; position <= itemCount; position++)
                 {
+                    // get old view from the Dictionary 
                     View oldView = viewDict[position];
+                    // pass into the getview method for changes 
                     View v = adapter.GetView(position, oldView, mGrid);
                     viewDict.Remove(position);
+                    // re-write into the grid
                     AddViewInGrid(v, position);
                 }
             }
@@ -157,16 +188,25 @@ namespace DLab.Views
         {
             if (mGrid != null)
             {
+                // set column and row definations 
+                // also change in the definations
                 setDefinations();
                 View v;
 
+                // to check already exist or not
+                // if exist then this view and all the below view 
+                // refreshed 
+                // Note : Above view or cell can't affected, when you use this method for the 
+                // data change with particular index
                 if (viewDict.ContainsKey(index))
                 {
+                    // remove view or cell form the Grid
                     for(position = GetChildCount(); position >= index; position--)
                     {
                         RemoveViewInGrid(viewDict[position]);
                     }
 
+                    // re-write the grid
                     for (position = index; position <= itemCount; position++)
                     {
                         View oldView = viewDict[position];
@@ -177,6 +217,8 @@ namespace DLab.Views
                 }
                 else
                 {
+                    // cell consider as new one and will be added at the 
+                    // end of the grid 
                     position = index;
                     v = adapter.GetView(position, null, mGrid);
                     AddViewInGrid(v, position);
@@ -184,6 +226,7 @@ namespace DLab.Views
             }
         }
 
+        // Automatically handle the scrolling
         private async void Handle_SizeChanged(object o, EventArgs arg)
         {
             if (ScrollToEnd)
@@ -194,6 +237,7 @@ namespace DLab.Views
             }
         }
 
+        // to define row and no of column
         private void setDefinations()
         {
             itemCount = adapter.GetCount() - 1;
@@ -202,6 +246,7 @@ namespace DLab.Views
             defineColumnDefination();
         }
 
+        // add all the view 
         private void loadCells()
         {
             for(position = 0; position <= itemCount; position++)
@@ -211,6 +256,9 @@ namespace DLab.Views
             }
         }
 
+        // calculate how many rows required
+        // if required then added new row else remove unwanted 
+        // rows from the grid
         private void defineRowDefination()
         {
             int definitionsCount = mGrid.RowDefinitions.Count;
@@ -219,7 +267,9 @@ namespace DLab.Views
                 if(definitionsCount > rowCount)
                 {
                     int diff = definitionsCount - rowCount;
-                    if(diff >= 3)
+                    // here, count take 3 because when you remove row from the grid 
+                    // below create some space, otherwise it will be always resting to the bottom
+                    if (diff >= 3)
                     {
                         for (int i = (definitionsCount - 1); i > rowCount; i--)
                         {
@@ -229,6 +279,7 @@ namespace DLab.Views
                 }
                 else
                 {
+                    // to remove row definations
                     for (int i = definitionsCount; i < rowCount; i++)
                     {
                         mGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
@@ -237,6 +288,9 @@ namespace DLab.Views
             }
         }
 
+        // same as like row; add new column or remove unwanted column
+        // but most of case not change the count of the column at run time 
+        // so, it will be give same answers everytime 
         private void defineColumnDefination()
         {
             int definitionsCount = mGrid.ColumnDefinitions.Count;
@@ -259,6 +313,7 @@ namespace DLab.Views
             }
         }
 
+        // to calculate how many row required
         private int GetRowCount(int itemCount)
         {
             int nRow = 0;
@@ -271,11 +326,13 @@ namespace DLab.Views
             return nRow;
         }
 
+        // to check no is float or not
         private bool IsFloat(float f)
         {
             return ((f - (int)f) != 0);
         }
 
+        // add view in grid with gesture recognizers
         private void AddViewInGrid(View view, int position)
         {
             viewDict.Add(position, view);
@@ -283,6 +340,7 @@ namespace DLab.Views
             SetGestureRecognizers(view,position);
         }
 
+        // apply gesture to the view
         private void SetGestureRecognizers(View view, int position)
         {
             view.GestureRecognizers.Clear();
@@ -293,6 +351,8 @@ namespace DLab.Views
             view.GestureRecognizers.Add(cgr.getTapGestureRecognizer());
         }
 
+        // to store the details of the view like 
+        // position and view holder 
         private class CustomGestureRecognizers
         {
             public GridView grid { get; set; }
@@ -314,26 +374,35 @@ namespace DLab.Views
             }
         }
 
+        // remove view from the grid
         private void RemoveViewInGrid(View view)
         {
             mGrid.Children.Remove(view);
         }
 
+        //clear whole grid
         private void ClearGrid()
         {
             mGrid.Children.Clear();
         }
 
+        // get child count
         private int GetChildCount()
         {
             return mGrid.Children.Count - 1;
         }
 
+        // to get the row index 
+        // mathematically calculate the row index
+        // logic : row    = (int)(index / width)
         private int GetRowIndex(int position)
         {
             return position / NumColumns;
         }
 
+        // to get the column index 
+        // mathematically calculate the column index
+        // logic : column = index % width
         private int GetColumnIndex(int position)
         {
             return position % NumColumns;

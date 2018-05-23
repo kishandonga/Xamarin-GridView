@@ -29,7 +29,12 @@ namespace XamGridView.Pages
                 lstImages.Add("https://unsplash.it/300/300?image=" + i);
             }
 
+            // passing the list of the images 
             ImagesGridAdapter adapter = new ImagesGridAdapter(lstImages);
+            // Note : Order is mandatory 
+            // first need to initialize the Tap event then after give the item source 
+            // because if you first give item source then that time your event will ne consider as null
+            // so it will be not detected gesture event 
             gridLayout.ItemTapped += Handle_TapEvent;
             gridLayout.ItemSource = adapter;
             
@@ -41,6 +46,9 @@ namespace XamGridView.Pages
             {
                 try
                 {
+                    // get the selected view holder from the Event arguments
+                    // arg.view.BindingContext => to get the ViewHolder
+                    // arg.position
                     ImagesGridViewHolder holder = (ImagesGridViewHolder)arg.view.BindingContext;
                     Image img = holder.img;
                     await img.ScaleTo(0.8, 50);

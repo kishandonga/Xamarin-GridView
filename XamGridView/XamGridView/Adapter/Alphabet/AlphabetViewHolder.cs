@@ -9,6 +9,7 @@
 
 namespace XamGridView.Adapter.Alphabet
 {
+    // make your custom cell
     public class AlphabetViewHolder
     {
         public Frame frame;
@@ -27,6 +28,7 @@ namespace XamGridView.Adapter.Alphabet
             frame.Content = lbl;
         }
 
+        // to get the root view of the your cell
         public View getRootView()
         {
             return frame;

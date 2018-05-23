@@ -16,20 +16,25 @@ namespace XamGridView.Adapter.Images
     {
         private List<string> lstImages;
 
+        // get your list of the Data
         public ImagesGridAdapter(List<string> lstImages)
         {
             this.lstImages = lstImages;
         }
+
+        // return the count
         public override int GetCount()
         {
             return lstImages.Count;
         }
 
+        // get the item at perticular position
         public override object GetItem(int position)
         {
             return lstImages[position];
         }
 
+        // initialize your view in the convertview
         public override View GetView(int position, View convertView, View parentView)
         {
             ImagesGridViewHolder holder;

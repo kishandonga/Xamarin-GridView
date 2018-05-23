@@ -19,16 +19,19 @@ namespace XamGridView.Adapter.Alphabet
         private List<string> lstAlphabets;
         private int mSelectedPosition = -1;
 
+        // get your list of the Data
         public AlphabetGridAdapter(List<string> lstAlphabets) 
         {
             this.lstAlphabets = lstAlphabets;
         }
 
+        // return the count
         public override int GetCount()
         {
             return lstAlphabets.Count;
         }
 
+        // get the item at perticular position
         public override object GetItem(int position)
         {
             return lstAlphabets[position];
@@ -63,12 +66,14 @@ namespace XamGridView.Adapter.Alphabet
             return convertView;
         }
 
+        // change the list and notify to the view
         public void AddNewList(List<string> lstImages)
         {
             this.lstAlphabets = lstImages;
             NotifyDataSetChanged();
         }
 
+        // remove item into the list and notify to the view by index
         public void RemoveByRandom()
         {
             int index = new Random().Next(0, GetCount());
@@ -80,6 +85,7 @@ namespace XamGridView.Adapter.Alphabet
             }
         }
 
+        // remove item into the list and notify to the view by index
         public void RemoveByIndex(int index)
         {
             if(index >= 0 && index < GetCount())
@@ -90,6 +96,7 @@ namespace XamGridView.Adapter.Alphabet
             }
         }
 
+        // add item into the list and notify to the view
         public void AddData(string data)
         {
             lstAlphabets.Add(data);
@@ -98,6 +105,7 @@ namespace XamGridView.Adapter.Alphabet
             Debug.WriteLine("Index :- " + index);
         }
 
+        // select item and notify to the view
         public void SetSelectedItem(int itemPosition)
         {
             mSelectedPosition = itemPosition;

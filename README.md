@@ -63,7 +63,7 @@ public class ImagesGridAdapter : GridAdapter
 }    
 ```
 
-Xamarin does not have layout inflator facility so, need to manually write grid cell code which is our view holder class.
+Xamarin does not have layout inflater facility so, need to manually write grid cell code which is our view holder class.
 You can see the code of this file [here](XamGridView/XamGridView/Adapter/Images/ImagesGridViewHolder.cs):
 
 ```C#
@@ -105,7 +105,7 @@ Then add this sample xaml code:
 
 ```C#
 ImagesGridAdapter adapter = new ImagesGridAdapter(lstImages);
-// alwayes first initialize tap event then after pass the item source
+// always first initialize tap event then after pass the item source
 gridLayout.ItemTapped += Handle_TapEvent;
 gridLayout.ItemSource = adapter;
 ```
@@ -128,25 +128,25 @@ private void Handle_TapEvent(object s, GridEventArgs arg)
 
 |Properties|Version|Description
 | :-------------------  | :------------------: | :------------------- |
-|NumColumns|1.0| How many columns are required, mininimum 1 and default 3
-|ScrollToEnd|1.0| If true then automatically scrolling view else not default false
-|ColumnSpacing|1.0| To give the space between two column default 6.0
-|RowSpacing|1.0| To give the space between two row default 6.0
+|NumColumns|1.0| How many columns are required, minimum 1 and default 3
+|ScrollToEnd|1.0| If true then automatically scrolling view else not, default false
+|ColumnSpacing|1.0| To give the space between two column, default 6.0
+|RowSpacing|1.0| To give the space between two row, default 6.0
 
 ## Update GridView
 
-It does not follow the observing pattern so when you do change in your list, you need to notify view using this methods `NotifyDataSetChanged()` or `NotifyDataSetChanged(int position)`. for more information refer this code sample [here](XamGridView/XamGridView/Adapter/Alphabet/AlphabetGridAdapter.cs):
+It does not follow the observing pattern so when you do change in your list, you need to notify view using this methods `NotifyDataSetChanged()` or `NotifyDataSetChanged(int position)`. For, more information refer this code sample [here](XamGridView/XamGridView/Adapter/Alphabet/AlphabetGridAdapter.cs):
 
 ## Small Print
 
 ### Current issues
 
 * GridView cell not support animations when initialize
-* If TapEvent initialize after ItemSource then it is consider null so evnt not detected
+* If TapEvent initialize after ItemSource then it is consider as null so, event not detects
 
 ### Contributing
 
-Contributions are welcome! If you find a bug please report it and if you want a feature please report it. If you want to contribute code please file an issue and create a branch off of the current dev branch and file a pull request.
+Contributions are welcome! If you find a bug please report it and if you want add new feature then please suggest to me. If you want to contribute code please file an issue and create a branch off of the current dev branch and file a pull request.
 
 ### About me
 

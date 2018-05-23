@@ -11,7 +11,7 @@ This is Android Adapter Pattern GridView in the Xamarin Forms, which simply take
 
 ## Installation
 
-This GridView DLL add as `Refrences` into your projects. Download form this link [DLab.GridView_v1.0.dll](ReleaseDLL/DLab.GridView_v1.0.dll). For, the more information refer this [`XamGridView`](XamGridView/) sample project. 
+This GridView DLL add as `References` into your projects. Download form this link [DLab.GridView_v1.0.dll](ReleaseDLL/DLab.GridView_v1.0.dll). For, the more information refer this [`XamGridView`](XamGridView/) sample project. 
 
 ## Usage
 
@@ -110,7 +110,7 @@ gridLayout.ItemTapped += Handle_TapEvent;
 gridLayout.ItemSource = adapter;
 ```
 
-## GridView Event
+**Event:**
 
 ```C#
 private void Handle_TapEvent(object s, GridEventArgs arg)
@@ -146,12 +146,12 @@ It does not follow the observing pattern so when you do change in your list, you
 
 ### Contributing
 
-* Contributions are welcome! If you find a bug please report it and if you want a feature please report it. If you want to contribute code please file an issue and create a branch off of the current dev branch and file a pull request.
+Contributions are welcome! If you find a bug please report it and if you want a feature please report it. If you want to contribute code please file an issue and create a branch off of the current dev branch and file a pull request.
 
 ### About me
 
+Kishan Donga ([@ikishan92](https://twitter.com/ikishan92))  
 I am android developer so that's why I develope this GridView in the adapter pattern.
-Kishan Donga ([@ikishan92](https://twitter.com/ikishan92))
 
 ### License
 

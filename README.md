@@ -11,7 +11,9 @@ This is Android Adapter Pattern GridView in the Xamarin Forms, which simply take
 
 ## Installation
 
-This GridView DLL add as `References` into your projects. Download form this link [DLab.GridView_v1.0.dll](ReleaseDLL/DLab.GridView_v1.0.dll). For, the more information refer this [`XamGridView`](XamGridView/) sample project. 
+This GridView DLL add as `References` into your xamarin form project. Download form this link [DLab.GridView_v1.0.dll](ReleaseDLL/DLab.GridView_v1.0.dll). For, the more information refer this [`XamGridView`](XamGridView/) sample project.  
+
+Note : Only required to add this DLL into the your xamarin from project.
 
 ## Usage
 

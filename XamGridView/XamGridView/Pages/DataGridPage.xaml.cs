@@ -2,6 +2,7 @@
 using DLab.Views;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using Xamarin.Forms;
@@ -28,11 +29,14 @@ namespace XamGridView.Pages
     public partial class DataGridPage : ContentPage
     {
         private DataGridAdapter adapter;
+        private DataGridViewModel viewModel;
 
         public DataGridPage()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, true);
+            viewModel = new DataGridViewModel();
+            BindingContext = viewModel;
 
             var list = DataSource.GetOrders();
             var headerList = GetHeader(list);
@@ -44,12 +48,14 @@ namespace XamGridView.Pages
                 RowSpacing = 1
             };
 
+            slView.Children.Add(new DataGridHeaderView(headerList).getRootView());
+            slView.Children.Add(grid);
+
             adapter = new DataGridAdapter(list);
             grid.ItemTapped += Handle_TapEvent;
             grid.ItemSource = adapter;
 
-            slView.Children.Add(new DataGridHeaderView(headerList).getRootView());
-            slView.Children.Add(grid);
+            //viewModel.IsVisible = true;
         }
 
         public static List<string> GetHeader(List<Dictionary<string, object>> dList)
@@ -70,16 +76,45 @@ namespace XamGridView.Pages
             {
                 try
                 {
-                    // get the selected view holder from the Event arguments
-                    DataGridViewHolder holder = (DataGridViewHolder)arg.view.BindingContext;
-                    Dictionary<string, object> model = holder.data;
-                    adapter.SetSelectedItem(arg.position);
+                    if (!pbIndicator.IsVisible)
+                    {
+                        // get the selected view holder from the Event arguments
+                        DataGridViewHolder holder = (DataGridViewHolder)arg.view.BindingContext;
+                        Dictionary<string, object> model = holder.data;
+                        adapter.SetSelectedItem(arg.position);
+                    }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex);
                 }
             });
+        }
+    }
+
+    public class DataGridViewModel : INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+        private bool isVisible = false;
+         
+        public bool IsVisible
+        {
+            get
+            {
+                return isVisible;
+            }
+            set
+            {
+                isVisible = value;
+                // Call OnPropertyChanged whenever the property is updated
+                OnPropertyChanged(nameof(IsVisible));
+            }
+        }
+
+        // Create the OnPropertyChanged method to raise the event
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }

@@ -5,9 +5,23 @@
              Title="Data Grid">
     <ContentPage.Content>
         <StackLayout>
-            <ScrollView Orientation="Horizontal">
-                <StackLayout Orientation="Vertical" x:Name="slView" Spacing="0"/>
-            </ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <ScrollView Orientation="Horizontal" Grid.Row="0">
+                    <StackLayout Orientation="Vertical" x:Name="slView" Spacing="0"/>
+                </ScrollView>
+                
+                <ActivityIndicator 
+                    x:Name="pbIndicator"
+                    IsVisible="{Binding IsVisible}"
+                    IsRunning="{Binding IsVisible}"
+                    Grid.Row="0"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 /*
@@ -110,6 +111,17 @@ namespace XamGridView.Adapter.Alphabet
         {
             mSelectedPosition = itemPosition;
             NotifyDataSetChanged();
+        }
+
+        public override Task<bool> OutAnimation(View view)
+        {
+            return view.FadeTo(1, 500);
+        }
+
+        public override Task<bool> InAnimation(View view)
+        {
+            view.Opacity = 0;
+            return Task.FromResult(true);
         }
     }
 }

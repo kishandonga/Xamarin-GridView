@@ -10,6 +10,7 @@
                      VerticalOptions="Center">
             <Button x:Name="btnImagesGrid" Text="Images Grid"/>
             <Button x:Name="btnAlphabetGrid" Text="Alphabet Grid"/>
+            <Button x:Name="btnDataGrid" Text="Data Grid"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

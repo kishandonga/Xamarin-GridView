@@ -1,11 +1,9 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 /*
  * Developed By : Kishan Donga, (Software Engineer Mobility)
- * Email Id : kishandonga.92@gmail.com
- * Contact : (+91)9712598499
- * Country : India
  * */
 
 namespace DLab.Widgets
@@ -39,6 +37,10 @@ namespace DLab.Widgets
         // GetView passing data from the GridView to the Custom Adapter 
         // And Adapter to the GridView
         public abstract View GetView(int position, View convertView, View parentView);
+
+        public abstract Task<bool> InAnimation(View view);
+
+        public abstract Task<bool> OutAnimation(View view);
 
         // Notify to the GridView, When Item Source change
         public void NotifyDataSetChanged()

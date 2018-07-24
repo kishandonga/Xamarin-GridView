@@ -1,6 +1,7 @@
 ﻿using DLab.Widgets;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 /*
@@ -58,6 +59,16 @@ namespace XamGridView.Adapter.Images
             };
 
             return convertView;
+        }
+
+        public override Task<bool> OutAnimation(View view)
+        {
+            return Task.FromResult(true);
+        }
+
+        public override Task<bool> InAnimation(View view)
+        {
+            return Task.FromResult(true);
         }
     }
 }

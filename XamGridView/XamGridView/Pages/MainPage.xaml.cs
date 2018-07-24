@@ -25,7 +25,11 @@ namespace XamGridView
             {
                 Navigation.PushAsync(new AlphabetPage());
             };
-            
+
+            btnDataGrid.Clicked += delegate
+            {
+                Navigation.PushAsync(new DataGridPage());
+            };
         }
     }
 }

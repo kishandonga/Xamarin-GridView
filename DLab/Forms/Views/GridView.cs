@@ -6,9 +6,6 @@ using DLab.Forms.Events;
 
 /*
  * Developed By : Kishan Donga, (Software Engineer - Mobility)
- * Email Id : kishandonga.92@gmail.com
- * Contact : (+91)9712598499
- * Country : India
  * */
 
 namespace DLab.Views
@@ -140,17 +137,12 @@ namespace DLab.Views
         // private method used by ItemSource
         private void setAdapter(GridAdapter adapter)
         {
-            if (adapter == null)
-            {
-                throw new ArgumentNullException("Adapter can not be null!");
-            }
-
-            if(NumColumns <= 0)
+            if (NumColumns <= 0)
             {
                 throw new ArgumentException("NumColumns must be geter then zero!");
             }
 
-            this.adapter = adapter;
+            this.adapter = adapter ?? throw new ArgumentNullException("Adapter can not be null!");
             // Attach NotifyDataSetChange event
             adapter.AttachToEvent(Handle_notifyDataSetChange);
             // Attach NotifyDataSetChangeByIndex event
@@ -333,11 +325,13 @@ namespace DLab.Views
         }
 
         // add view in grid with gesture recognizers
-        private void AddViewInGrid(View view, int position)
+        private async void AddViewInGrid(View view, int position)
         {
             viewDict.Add(position, view);
+            await adapter.InAnimation(view);
             mGrid.Children.Add(view, GetColumnIndex(position), GetRowIndex(position));
-            SetGestureRecognizers(view,position);
+            await adapter.OutAnimation(view);
+            SetGestureRecognizers(view, position);
         }
 
         // apply gesture to the view

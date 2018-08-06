@@ -3,7 +3,7 @@
 ![](Screenshots/demo.gif)
 
 More screenshots: [GridView with images](Screenshots/Screenshot_1526994445.png) and [GridView with
-alphabet characters](Screenshots/Screenshot_1526994471.png).
+alphabet characters](Screenshots/Screenshot_1526994471.png) [GridView as DataGrid](Screenshots/device-182739.png)(Screenshots/device-182750.png).
 
 ***
 
@@ -11,7 +11,7 @@ This is Android Adapter Pattern GridView in the Xamarin Forms, which simply take
 
 ## Installation
 
-This GridView DLL add as `References` into your xamarin form project. Download form this link [DLab.GridView_v1.0.dll](ReleaseDLL/DLab.GridView_v1.0.dll). For, the more information refer this [`XamGridView`](XamGridView/) sample project.  
+This GridView code added into your xamarin form project and rebuild project. For, the more information refer this [`XamGridView`](XamGridView/) sample project.  
 
 Note : Only required to add this DLL in your xamarin from project.
 

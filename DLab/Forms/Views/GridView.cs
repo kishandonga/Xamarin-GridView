@@ -110,7 +110,7 @@ namespace DLab.Views
         // to get the row count
         public int NumRow
         {
-            get { return rowCount; }
+            get { return rowCount + 1; }
         }
 
         // to get the item count

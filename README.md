@@ -4,9 +4,9 @@
 
 More screenshots: 
 [GridView with images](Screenshots/Screenshot_1526994445.png)  
-[GridView with alphabet characters](Screenshots/Screenshot_1526994471.png) 
-[GridView as DataGrid - 1](Screenshots/device-182739.png)
-[GridView as DataGrid - 2](Screenshots/device-182750.png)
+[GridView with alphabet characters](Screenshots/Screenshot_1526994471.png)  
+[GridView as DataGrid - 1](Screenshots/device-182739.png)  
+[GridView as DataGrid - 2](Screenshots/device-182750.png)  
 
 ***
 

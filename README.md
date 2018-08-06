@@ -13,8 +13,6 @@ This is Android Adapter Pattern GridView in the Xamarin Forms, which simply take
 
 This GridView code added into your xamarin form project and rebuild project. For, the more information refer this [`XamGridView`](XamGridView/) sample project.  
 
-Note : Only required to add this DLL in your xamarin from project.
-
 ## Usage
 
 Here's an example of code to write custom adapter class of the GridView and how to use adapter pattern in the xamarin forms. 

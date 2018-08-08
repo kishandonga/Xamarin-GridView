@@ -1,6 +1,6 @@
 # Xamarin Forms GridView
 
-![](Screenshots/demo.gif)
+![](Screenshots/demo_1.gif)
 
 More screenshots:   
 [GridView with images](Screenshots/Screenshot_1526994445.png)  

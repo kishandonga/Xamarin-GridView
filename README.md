@@ -10,6 +10,8 @@ More screenshots:
 
 ***
 
+### Xamarin Forms GridView no longer maintain anyone can fork and publish as NuGet Package
+
 This is Android Adapter Pattern GridView in the Xamarin Forms, which simply takes your list of the data and convert into the grid pattern as like in android. you just need to pass the item count and root view of your cell.
 
 ## Installation
@@ -158,4 +160,4 @@ I am android developer so that's why I develope this GridView in the adapter pat
 
 ### License
 
-`Xamarin-GridView` is released under the MIT license.
+`Xamarin-GridView` is released under the GPU license.

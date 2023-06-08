@@ -2,7 +2,7 @@
 
 ***
 
-### Xamarin Forms GridView no longer maintain anyone can fork and publish as NuGet Package
+### Xamarin Forms GridView No Longer Maintain anyone can fork and publish as NuGet Package
 
 ***
 
@@ -157,8 +157,8 @@ Contributions are welcome! If you find a bug please report it and if you want ad
 
 ### About me
 
-Kishan Donga ([@ikishan92](https://twitter.com/ikishan92))  
-I am android developer so that's why I develope this GridView in the adapter pattern.
+Kishan Donga ([@ikishan96](https://twitter.com/ikishan96))  
+I am a developer and I love to create innovations that's why I created this GridView in the adapter pattern.
 
 ### License
 
